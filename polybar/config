@@ -236,6 +236,7 @@ font-2 = Roboto:style=Bold:size=11;2
 
 modules-right = polydiff vagrant date time
 modules-left = xwindow
+modules-center = spotify
 override-redirect = true
 
 wm-restack = i3
@@ -650,7 +651,7 @@ type = internal/temperature
 thermal-zone = 0
 base-temperature = 45
 warn-temperature = 70
-hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon0/temp1_input
 interval = 1
 
 format = <ramp>  <label>
