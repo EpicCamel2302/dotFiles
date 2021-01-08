@@ -5,8 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "JetBrainsMono Nerd Font:pixelsize=12:antialias=true:autohint=true";
-static int borderpx = 8;
+static char *font = "JetBrainsMono NF:pixelsize=12:antialias=true:autohint=true";
+static int borderpx = 24;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -16,7 +16,7 @@ static int borderpx = 8;
  * 4: value of shell in /etc/passwd
  * 5: value of shell in config.h
  */
-static char *shell = "/bin/sh";
+static char *shell = "/usr/bin/fish";
 char *utmp = NULL;
 char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 
@@ -83,34 +83,34 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 1;
+float alpha = 0.7;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 
   /* 8 normal colors */
-  [0] = "#252525", /* black   */
-  [1] = "#ef6769", /* red     */
-  [2] = "#a6e22e", /* green   */
-  [3] = "#fd971f", /* yellow  */
-  [4] = "#6495ed", /* blue    */
-  [5] = "#deb887", /* magenta */
-  [6] = "#b0c4de", /* cyan    */
-  [7] = "#dbdcdc", /* white   */
+  [0] = "#2b2b2b", /* black   */
+  [1] = "#da4939", /* red     */
+  [2] = "#a5c261", /* green   */
+  [3] = "#ffc66d", /* yellow  */
+  [4] = "#6d9cbe", /* blue    */
+  [5] = "#b6b3eb", /* magenta */
+  [6] = "#519f50", /* cyan    */
+  [7] = "#e6e1dc", /* white   */
 
   /* 8 bright colors */
-  [8]  = "#454545", /* black   */
-  [9]  = "#fc7ca5", /* red     */
-  [10] = "#b6e354", /* green   */
-  [11] = "#fd971f", /* yellow  */
-  [12] = "#87ceeb", /* blue    */
-  [13] = "#996600", /* magenta */
-  [14] = "#87ceeb", /* cyan    */
-  [15] = "#fdfdfd", /* white   */
+  [8]  = "#5a647e", /* black   */
+  [9]  = "#da4939", /* red     */
+  [10] = "#a5c261", /* green   */
+  [11] = "#ffc66d", /* yellow  */
+  [12] = "#6d9cbe", /* blue    */
+  [13] = "#b6b3eb", /* magenta */
+  [14] = "#519f50", /* cyan    */
+  [15] = "#f9f7f3", /* white   */
 
   /* special colors */
-  [256] = "#1c1c1c", /* background */
-  [257] = "#ffffff", /* foreground */
+  [256] = "#2b2b2b", /* background */
+  [257] = "#e6e1dc", /* foreground */
 };
 
 /*
@@ -120,7 +120,7 @@ static const char *colorname[] = {
 unsigned int defaultfg = 257;
 unsigned int defaultbg = 256;
 unsigned int defaultcs = 257;
-unsigned int defaultrcs= 256;
+unsigned int defaultrcs = 257;
 /*
  * Colors used, when the specific fg == defaultfg. So in reverse mode this
  * will reverse too. Another logic would only make the simple feature too
@@ -128,7 +128,6 @@ unsigned int defaultrcs= 256;
  */
 static unsigned int defaultitalic = 7;
 static unsigned int defaultunderline = 7;
-
 
 /*
  * Default shape of cursor

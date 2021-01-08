@@ -20,7 +20,8 @@
 ; background = ${xrdb:color0:#dd262626}
 ; background = #1d2021
 ; background = ${cyberdark.color1}
-background = #AA220b44
+background = #66000000
+
 background-alt = ${gruvbox.bg-dark}
 ;background-alt = #666
 ;foreground = ${xrdb:color7:#222}
@@ -63,7 +64,7 @@ fig = #4c3f54
 basil = #486824
 
 [bar/right]
-monitor = eDP-1
+monitor = ${env:MONITOR:}
 offset-y = 0
 width = 100%
 height = 25
@@ -145,14 +146,14 @@ border-color = ${colors.background}
 padding-left = 0
 padding-right = 0
 
-modules-right = cpu temperature memory filesystem pulseaudio battery powermenu
-modules-left = i3
-modules-center =
+modules-left = cpu memory wlan filesystem battery
+modules-right = pulseaudio powermenu
+modules-center = i3
 
 override-redirect = true
 
 [bar/lower]
-monitor = DP-2-1
+monitor = ${env:MONITOR:}
 width = 100%
 height = 22
 bottom = true
@@ -188,8 +189,8 @@ font-2 = Roboto:style=Bold:size=11;2
 
 
 
-modules-right = spotify polydiff vagrant date time
-modules-left = xwindow
+modules-right = date time
+modules-left = xwindow info-hackspeed
 override-redirect = true
 
 wm-restack = i3
@@ -335,24 +336,24 @@ type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
-
+strip-wsnumbers = true
 ; Only show workspaces on the same output as the bar
 pin-workspaces = true
 fuzzy-match = true
 
 ; Unique workspace labels
 ws-icon-0 = Misc;
-ws-icon-1 = Slack;
+ws-icon-1 = Teams;
 ws-icon-2 = Web;
 ws-icon-3 = Dev;
 ws-icon-4 = Terminal;
 ws-icon-5 = Media;
-ws-icon-6 = Gimp;
+ws-icon-6 = Notes;
 ws-icon-default = 
-label-focused-padding = 1px
-label-unfocused-padding = 1px
-label-visible-padding = 1px
-label-urget-padding = 1px
+label-focused-padding = 5px
+label-unfocused-padding = 5px
+label-visible-padding = 5px
+label-urget-padding = 5px
 label-mode-padding = ${general.padding}
 label-mode-foreground = #000
 label-mode-background = ${colors.primary}
@@ -360,7 +361,7 @@ label-mode-background = ${colors.primary}
 ; focused = Active workspace on focused monitor
 label-focused = %icon% %name%
 label-focused-foreground = #fff
-label-focused-background = #AA4f199e
+label-focused-background = ${colors.background}
 ; label-focused-underline = ${colorful.green}
 ; label-focused-underline = ${cyberdark.color1}
 ; label-focused-padding = ${self.label-mode-padding}
@@ -368,8 +369,8 @@ label-focused-background = #AA4f199e
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %icon% %name%
 ; label-unfocused-padding = ${self.label-focused-padding}
-label-unfocused-foreground = #DDFFFFFF
-label-unfocused-background = #CC220b44
+label-unfocused-foreground = #55dddddd
+label-unfocused-background = ${colors.background}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %icon% %name%
@@ -465,12 +466,13 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp3s0
+interface = wlp0s20f3 
 interval = 3.0
 
-format-connected = <ramp-signal>
-format-connected-foreground = ${gruvbox.purple}
-; label-connected = %essid%
+format-connected = <ramp-signal> <label-connected>
+format-connected-foreground = ${gruvbox.aqua}
+label-connected = %essid%
+label-connected-foreground = ${colors.foreground}
 format-connected-padding = ${general.padding}
 
 format-disconnected = 
@@ -542,8 +544,8 @@ label = %time%
 [module/pulseaudio]
 type = internal/pulseaudio
 
-; format-volume = <label-volume>  <bar-volume>
-format-volume = <ramp-volume>  <label-volume>
+ format-volume = <ramp-volume> <label-volume>  <bar-volume>
+; format-volume = <ramp-volume>  <label-volume>
 label-volume = %percentage%%
 format-volume-foreground = ${gruvbox.yellow}
 format-volume-padding = ${general.padding}
@@ -720,6 +722,11 @@ format = | <label>
 label = %{T2}%output%%{T-}
 
 interval = 4
+
+[module/info-hackspeed]
+type = custom/script
+exec = ~/.config/polybar/scripts/hack-speed.sh
+tail = true
 
 [module/vagrant]
 type=custom/script
